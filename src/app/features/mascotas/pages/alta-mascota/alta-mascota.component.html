@@ -1,0 +1,117 @@
+<div class="form-overlay" (click)="onCancelar()">
+  <div class="form-slide-up" (click)="$event.stopPropagation()">
+    <div class="form-header">
+      <div class="title">
+        <div class="title-icon">
+          <i class="fas fa-paw"></i>
+        </div>
+        <span>Registrar Nueva Mascota</span>
+      </div>
+    </div>
+
+    <div class="form-scroll-container">
+      <form [formGroup]="formulario" (ngSubmit)="guardarMascota()" class="form">
+        <div *ngIf="formMessage" class="form-message" [ngClass]="formMessage.type">
+          <i [class]="formMessage.icon"></i>
+          <span>{{ formMessage.text }}</span>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <i class="fas fa-dna"></i>
+            Especie *
+          </label>
+          <div class="input-wrapper">
+            <select formControlName="especie" class="input" (change)="onEspecieChange()">
+              <option value="" disabled selected>Selecciona una especie</option>
+              <option *ngFor="let esp of especies" [value]="esp.nombre">{{ esp.nombre }}</option>
+            </select>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <small *ngIf="formulario.get('especie')?.invalid && formulario.get('especie')?.touched" 
+                 class="hint">
+            <i class="fas fa-exclamation-circle"></i>
+            Este campo es obligatorio
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <i class="fas fa-dog"></i>
+            Raza *
+          </label>
+          <div class="input-wrapper">
+            <select formControlName="raza" class="input" [disabled]="!razas.length">
+              <option value="" disabled selected>Selecciona una raza</option>
+              <option *ngFor="let raza of razas" [value]="raza">{{ raza }}</option>
+            </select>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <small *ngIf="!razas.length" class="hint">
+            <i class="fas fa-info-circle"></i>
+            Selecciona primero una especie
+          </small>
+          <small *ngIf="formulario.get('raza')?.invalid && formulario.get('raza')?.touched" 
+                 class="hint">
+            <i class="fas fa-exclamation-circle"></i>
+            Este campo es obligatorio
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <i class="fas fa-font"></i>
+            Nombre *
+          </label>
+          <input type="text" class="input" formControlName="nombre" 
+                 placeholder="Ej. Luna, Max, Bella..." 
+                 [class.invalid]="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched" />
+          <small *ngIf="formulario.get('nombre')?.invalid && formulario.get('nombre')?.touched" 
+                 class="hint">
+            <i class="fas fa-exclamation-circle"></i>
+            El nombre debe tener al menos 2 caracteres
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>
+            <i class="fas fa-birthday-cake"></i>
+            Edad (años) *
+          </label>
+          <input type="number" class="input" formControlName="edad" 
+                 min="0" max="50" placeholder="0" 
+                 [class.invalid]="formulario.get('edad')?.invalid && formulario.get('edad')?.touched" />
+          <small *ngIf="formulario.get('edad')?.invalid && formulario.get('edad')?.touched" 
+                 class="hint">
+            <i class="fas fa-exclamation-circle"></i>
+            La edad debe estar entre 0 y 20 años
+          </small>
+        </div>
+
+        <div class="scroll-indicator"></div>
+      </form>
+    </div>
+
+    <div class="form-footer">
+      <div class="buttons">
+        <button type="submit" class="btn btn-primary" 
+                [disabled]="formulario.invalid || loading"
+                (click)="guardarMascota()">
+          <span *ngIf="!loading">
+            <i class="fas fa-save"></i>
+            Guardar Mascota
+          </span>
+          <span *ngIf="loading" class="loading-text">
+            Guardando...
+          </span>
+        </button>
+        <button type="button" class="btn btn-cancel" 
+                (click)="onCancelar()" 
+                [disabled]="loading">
+          <i class="fas fa-times"></i>
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

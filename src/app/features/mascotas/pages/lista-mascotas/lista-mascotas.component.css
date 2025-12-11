@@ -1,0 +1,292 @@
+:root {
+  --primary: #3a7bd5;
+  --primary-dark: #2a61a5;
+  --primary-light: #7bb2f0;
+  --primary-soft: rgba(58, 123, 213, 0.1);
+
+  --success: #19a770;
+  --danger: #e53935;
+  --danger-light: #ff6b6b;
+
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+
+  --radius: 12px;
+  --radius-full: 50px;
+  --shadow-soft: 0 4px 18px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Fondo limpio y ligero */
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: #f6faff;
+  margin: 0;
+  min-height: 100vh;
+  color: var(--gray-700);
+}
+
+/* ----- HEADER ----- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 78px;
+  background: white;
+  border-bottom: 2px solid var(--gray-200);
+  box-shadow: var(--shadow-soft);
+  z-index: 9999;
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Título más empresarial */
+.header-title {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.logo {
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 2rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white !important;
+  padding: 14px 32px;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: 0 6px 20px rgba(58, 123, 213, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '+';
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--primary-dark), #1a4a8c);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(58, 123, 213, 0.5);
+}
+
+/* ----- MAIN ----- */
+.main-content {
+  margin-top: 100px;
+  padding: 30px 24px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ----- TABLA ----- */
+.table-container {
+  background: white;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  margin-top: 20px;
+  border: 1px solid var(--gray-200);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table thead {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+}
+
+.data-table th {
+  padding: 18px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.data-table td {
+  padding: 18px 20px;
+  border-top: 1px solid var(--gray-200);
+  vertical-align: middle;
+}
+
+/* Hover más suave */
+.data-table tbody tr:hover {
+  background: rgba(58, 123, 213, 0.04);
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+}
+
+/* ----- ÍCONOS MASCOTAS ----- */
+.name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.table-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-light);
+  box-shadow: 0 4px 10px rgba(58, 123, 213, 0.15);
+  background: white;
+  padding: 4px;
+}
+
+/* ----- BOTONES CRUD COMO BURBUJAS ----- */
+.actions-cell {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.btn-sm {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn-sm::before {
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 1.1rem;
+  color: white;
+}
+
+.btn-edit {
+  background: linear-gradient(135deg, #4a9eff, #2a7de1);
+}
+
+
+.btn-edit:hover {
+  background: linear-gradient(135deg, #2a7de1, #1a63c2);
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(74, 158, 255, 0.4);
+}
+
+.btn-delete {
+  background: linear-gradient(135deg, #ff6b6b, #e53935);
+}
+
+.btn-delete:hover {
+  background: linear-gradient(135deg, #ff5252, #d32f2f);
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+}
+
+/* Estado vacío */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-state p {
+  font-size: 1.3rem;
+  color: var(--gray-500);
+  margin: 0;
+}
+
+/* Animación para los botones */
+@keyframes buttonPop {
+  0% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.btn-sm {
+  animation: buttonPop 0.3s ease-out;
+}
+
+/* Responsive para la tabla */
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 16px;
+  }
+  
+  .header-title {
+    font-size: 1.5rem;
+  }
+  
+  .btn-primary {
+    padding: 12px 24px;
+    font-size: 0.9rem;
+  }
+  
+  .main-content {
+    padding: 20px 16px;
+    margin-top: 90px;
+  }
+  
+  .data-table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .data-table th,
+  .data-table td {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+  
+  .actions-cell {
+    gap: 8px;
+  }
+  
+  .btn-sm {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .table-icon {
+    width: 36px;
+    height: 36px;
+  }
+}

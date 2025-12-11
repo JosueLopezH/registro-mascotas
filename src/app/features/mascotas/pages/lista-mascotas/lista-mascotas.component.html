@@ -1,0 +1,58 @@
+<header class="header">
+  <div class="header-content">
+    <h1 class="header-title">
+      <span class="logo">Paw</span> Clínica Veterinaria
+    </h1>
+    <button class="btn-primary" (click)="abrirAlta()">
+       Agregar Mascota
+    </button>
+  </div>
+</header>
+
+<div class="main-content">
+  <app-alta-mascota
+    *ngIf="mostrarAlta"
+    (cerrar)="cerrarFormularios()">
+  </app-alta-mascota>
+
+  <app-editar-mascota
+    *ngIf="mostrarEditar"
+    [idMascota]="mascotaEditarId"
+    (cerrar)="cerrarFormularios()">
+  </app-editar-mascota>
+
+  <div class="table-container">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Especie</th>
+          <th>Raza</th>
+          <th>Edad</th>
+          <th class="actions-column">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let mascota of mascotas">
+          <td class="name-cell">
+            <img [src]="getIcon(mascota.especie)" alt="icon" class="table-icon">
+            {{ mascota.nombre }}
+          </td>
+          <td>{{ mascota.especie }}</td>
+          <td>{{ mascota.raza }}</td>
+          <td>{{ mascota.edad }} años</td>
+          <td class="actions-cell">
+            <button class="btn-sm btn-edit" (click)="abrirEditar(mascota.id)" title="Editar">✏️
+            </button>
+            <button class="btn-sm btn-delete" (click)="eliminar(mascota.id)" title="Eliminar">✖️
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="mascotas.length === 0" class="empty-state">
+      <p>No hay mascotas registradas aún.</p>
+    </div>
+  </div>
+</div>

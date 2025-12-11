@@ -1,0 +1,76 @@
+<div class="form-overlay" (click)="onCancelar()">
+  <div class="form-slide-up" (click)="$event.stopPropagation()">
+    <div class="title">
+      <div class="title-icon">
+        <i class="fas fa-edit"></i>
+      </div>
+      <span>Editar Mascota</span>
+    </div>
+
+    <form [formGroup]="formulario" (ngSubmit)="guardar()" class="form">
+      <div *ngIf="formMessage" class="form-message" [ngClass]="formMessage.type">
+        <i [class]="formMessage.icon"></i>
+        <span>{{ formMessage.text }}</span>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <i class="fas fa-dna"></i>
+          Especie
+        </label>
+        <div class="input-wrapper">
+          <select formControlName="especie" class="input" (change)="onEspecieChange()">
+            <option value="" disabled>Seleccione especie</option>
+            <option *ngFor="let esp of especies" [value]="esp.nombre">{{ esp.nombre }}</option>
+          </select>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <i class="fas fa-dog"></i>
+          Raza
+        </label>
+        <div class="input-wrapper">
+          <select formControlName="raza" class="input" [disabled]="razas.length === 0">
+            <option value="" disabled>Seleccione raza</option>
+            <option *ngFor="let raza of razas" [value]="raza">{{ raza }}</option>
+          </select>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <small *ngIf="razas.length === 0" class="hint">Selecciona primero una especie</small>
+      </div>
+
+      <div class="form-group">
+        <label>
+          <i class="fas fa-font"></i>
+          Nombre
+        </label>
+        <input type="text" formControlName="nombre" class="input" placeholder="Nombre de tu mascota" />
+      </div>
+
+      <div class="form-group">
+        <label>
+          <i class="fas fa-birthday-cake"></i>
+          Edad (años)
+        </label>
+        <input type="number" formControlName="edad" class="input" min="0" max="50" placeholder="0" />
+      </div>
+
+      <div class="buttons">
+        <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid || loading">
+          <span *ngIf="!loading">
+            <i class="fas fa-check"></i>
+            Guardar Cambios
+          </span>
+          <span *ngIf="loading" class="loading-text">Guardando...</span>
+        </button>
+        <button type="button" class="btn btn-cancel" (click)="onCancelar()" [disabled]="loading">
+          <i class="fas fa-times"></i>
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

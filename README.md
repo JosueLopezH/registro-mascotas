@@ -1,4 +1,4 @@
-#🐾 Registro de Mascotas 
+# Registro de Mascotas 
 (Angular 18 fue la version con la que se desarrollo y se recomienda tener la misma para evitar conflictos entre librerias)
 
 Este proyecto es una aplicación desarrollada en Angular 18 para el registro y gestión de mascotas. Permite seleccionar la especie de la mascota y posteriormente ingresar nombre, raza y edad.
